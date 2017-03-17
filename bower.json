@@ -26,9 +26,8 @@
     "moment-timezone": "~0.4.1"
   },
   "devDependencies": {
-    "angular": "1.2.14",
-    "angular-mocks": "1.2.14",
-    "angular-scenario": "1.2.14",
+    "angular-mocks": "~1.4",
+    "angular-scenario": "~1.4",
     "angular-bootstrap": "~0.3.0"
   }
 }
