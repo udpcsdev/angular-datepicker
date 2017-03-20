@@ -10,6 +10,14 @@
   <link rel="stylesheet" href="styles/bootstrap.css">
   <link rel="stylesheet" href="styles/style.css" />
   <link rel="stylesheet" href="../dist/angular-datepicker.css" />
+  <style>
+    .range-container .start, .range-container .end{
+      display: inline-block;
+      width: 250px;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+  </style>
 </head>
 <body ng-app="sample">
   <div class="row-fluid" ng-controller="DemoController">
@@ -41,7 +49,7 @@
       </div>
 
     </div>
-    <div class="span4">
+    <div class="span5">
       <h2>Minimum / Maximum dates</h2>
 
       <div>
@@ -68,7 +76,7 @@
 
       <form name="demoForm">
       <div>
-        <h5>Min ({{demoForm.pickerMinDate.$error.min ? 'Min: invalid' : 'Min: valid'}})</h5>        
+        <h5>Min ({{demoForm.pickerMinDate.$error.min ? 'Min: invalid' : 'Min: valid'}})</h5>
         <input date-time name="pickerMinDate" ng-model="dates.today" id="pickerMinDate" min-date="minDate" view="date" min-view="hours" timezone="UTC" format="lll">
       </div>
 
@@ -84,15 +92,15 @@
     </form>
       </div>
 
-      <div>
+      <div class="range-container">
         <h2>Range</h2>
-
+        <span class="start">{{getLocaleStr(dates.minDate)}}</span> ~ <span class="end">{{getLocaleStr(dates.maxDate)}}</span>
         <div date-range id="pickerRange" start="dates.minDate" end="dates.maxDate" date-change="changeDate" view="date" min-view="date" timezone="UTC"></div>
 
       </div>
 
     </div>
-    <div class="span4">
+    <div class="span3">
       <h2>Update events</h2>
       <div>
         <h4>Minimum date</h4>
@@ -246,6 +254,10 @@
         if (values) {
           $scope.$broadcast('pickerUpdate', pickersToUpdate, values);
         }
+      }
+
+      $scope.getLocaleStr = function (date) {
+        return moment(date).format('ll');
       }
     });
   </script>

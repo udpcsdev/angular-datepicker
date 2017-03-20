@@ -170,7 +170,7 @@
 [date-picker] .now.active {
   background-color: #003399 \9;
 }
-[date-picker] .now {
+/*[date-picker] .now {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #ee735b;
@@ -199,7 +199,7 @@
 [date-picker] .now:active,
 [date-picker] .now.active {
   background-color: #e9712d \9;
-}
+}*/
 [date-picker] .disabled {
   background: none;
   color: #999999 !important;
