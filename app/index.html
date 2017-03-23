@@ -95,7 +95,7 @@
       <div class="range-container">
         <h2>Range</h2>
         <span class="start">{{getLocaleStr(dates.minDate)}}</span> ~ <span class="end">{{getLocaleStr(dates.maxDate)}}</span>
-        <div date-range id="pickerRange" start="dates.minDate" end="dates.maxDate" date-change="changeDate" view="date" min-view="date" timezone="UTC"></div>
+        <div date-range id="pickerRange" start="dates.start" end="dates.end" min-date="dates.minDate" max-date="dates.maxDate" date-change="changeDate" view="date" min-view="date" timezone="UTC"></div>
 
       </div>
 
@@ -173,8 +173,10 @@
     demoApp.controller('DemoController', function ($scope) {
       $scope.dates = {
         today: moment.tz('UTC').hour(12).startOf('h'), //12:00 UTC, today.
-        minDate: moment.tz('UTC').add(-4, 'd').hour(12).startOf('h'), //12:00 UTC, four days ago.
-        maxDate: moment.tz('UTC').add(4, 'd').hour(12).startOf('h'), //12:00 UTC, in four days.
+        start: moment.tz('UTC').add(-1, 'd').hour(12).startOf('h'), //12:00 UTC, today.
+        end: moment.tz('UTC').add(1, 'd').hour(12).startOf('h'), //12:00 UTC, today.
+        minDate: moment.tz('UTC').add(-300, 'd').hour(12).startOf('h'), //12:00 UTC, four days ago.
+        maxDate: moment.tz('UTC').add(300, 'd').hour(12).startOf('h'), //12:00 UTC, in four days.
       };
 
       $scope.options = {
