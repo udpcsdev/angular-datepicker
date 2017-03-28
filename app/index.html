@@ -11,17 +11,29 @@
   <link rel="stylesheet" href="styles/style.css" />
   <link rel="stylesheet" href="../dist/angular-datepicker.css" />
   <style>
-    .range-container .start, .range-container .end{
+
+    .span3 {
+      min-width: 250px;
+    }
+
+    .span6 {
+      min-width: 520px;
+    }
+
+    .range-container .date-str{
       display: inline-block;
       width: 250px;
+      line-height: 28px;
       text-align: center;
-      border: 1px solid #ccc;
+      background-color: #f6f6f6;
+      color: #5B90BF;
+      margin-bottom: 20px;
     }
   </style>
 </head>
 <body ng-app="sample">
   <div class="row-fluid" ng-controller="DemoController">
-    <div class="span4">
+    <div class="span3">
       <div>
         <h2>Timezones</h2>
 
@@ -49,7 +61,7 @@
       </div>
 
     </div>
-    <div class="span5">
+    <div class="span6">
       <h2>Minimum / Maximum dates</h2>
 
       <div>
@@ -74,28 +86,31 @@
       <div>
         <h4>Input with popup (date-time directive)</h4>
 
-      <form name="demoForm">
-      <div>
-        <h5>Min ({{demoForm.pickerMinDate.$error.min ? 'Min: invalid' : 'Min: valid'}})</h5>
-        <input date-time name="pickerMinDate" ng-model="dates.today" id="pickerMinDate" min-date="minDate" view="date" min-view="hours" timezone="UTC" format="lll">
-      </div>
+        <form name="demoForm">
+          <div>
+            <h5>Min ({{demoForm.pickerMinDate.$error.min ? 'Min: invalid' : 'Min: valid'}})</h5>
+            <input date-time name="pickerMinDate" ng-model="dates.today" id="pickerMinDate" min-date="minDate" view="date" min-view="hours" timezone="UTC" format="lll">
+          </div>
 
-      <div>
-        <h5>Max ({{demoForm.pickerMaxDate.$error.max ? 'Max: invalid' : 'Max: valid'}})</h5>
-        <input date-time name="pickerMaxDate" ng-model="dates.today" id="pickerMaxDate" max-date="maxDate" view="date" min-view="hours" timezone="UTC" format="lll">
-      </div>
+          <div>
+            <h5>Max ({{demoForm.pickerMaxDate.$error.max ? 'Max: invalid' : 'Max: valid'}})</h5>
+            <input date-time name="pickerMaxDate" ng-model="dates.today" id="pickerMaxDate" max-date="maxDate" view="date" min-view="hours" timezone="UTC" format="lll">
+          </div>
 
-      <div>
-        <h5>Min + max ({{demoForm.pickerBothDates.$error.min ? 'Min: invalid, ' : 'Min: valid, '}} {{demoForm.pickerBothDates.$error.max ? 'max: invalid' : 'max: valid'}})</h5>
-        <input date-time name="pickerBothDates" ng-model="dates.today" id="pickerBothDates" min-date="minDate" max-date="maxDate" view="date" min-view="hours" timezone="UTC" format="lll">
-      </div>
-    </form>
+          <div>
+            <h5>Min + max ({{demoForm.pickerBothDates.$error.min ? 'Min: invalid, ' : 'Min: valid, '}} {{demoForm.pickerBothDates.$error.max ? 'max: invalid' : 'max: valid'}})</h5>
+            <input date-time name="pickerBothDates" ng-model="dates.today" id="pickerBothDates" min-date="minDate" max-date="maxDate" view="date" min-view="hours" timezone="UTC" format="lll">
+          </div>
+        </form>
       </div>
 
       <div class="range-container">
         <h2>Range</h2>
-        <span class="start">{{getLocaleStr(dates.minDate)}}</span> ~ <span class="end">{{getLocaleStr(dates.maxDate)}}</span>
-        <div date-range id="pickerRange" start="dates.start" end="dates.end" min-date="dates.minDate" max-date="dates.maxDate" date-change="changeDate" view="date" min-view="date" timezone="UTC"></div>
+        <div>
+          <span class="date-str">{{getLocaleStr(start)}}</span> ~ <span class="date-str">{{getLocaleStr(end)}}</span>
+        </div>
+
+        <div date-range id="pickerRange" start="start" end="end" min-date="dates.minDate" max-date="dates.maxDate" view="date" min-view="date" timezone="UTC" date-change="changeDate"></div>
 
       </div>
 
@@ -171,10 +186,12 @@
   <script>
     var demoApp = angular.module('sample', ['datePicker', 'ui.bootstrap']);
     demoApp.controller('DemoController', function ($scope) {
+
+      $scope.start = moment.tz('UTC').add(-1, 'd').hour(12).startOf('h')
+      $scope.end = moment.tz('UTC').add(1, 'd').hour(12).startOf('h')
+
       $scope.dates = {
         today: moment.tz('UTC').hour(12).startOf('h'), //12:00 UTC, today.
-        start: moment.tz('UTC').add(-1, 'd').hour(12).startOf('h'), //12:00 UTC, today.
-        end: moment.tz('UTC').add(1, 'd').hour(12).startOf('h'), //12:00 UTC, today.
         minDate: moment.tz('UTC').add(-300, 'd').hour(12).startOf('h'), //12:00 UTC, four days ago.
         maxDate: moment.tz('UTC').add(300, 'd').hour(12).startOf('h'), //12:00 UTC, in four days.
       };

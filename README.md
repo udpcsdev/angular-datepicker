@@ -8,18 +8,12 @@
 
 ## Installation
 
-### via bower 
+### via bower
 
 ```
-bower install  angular-datepicker --save
+bower install  uc-angular-datepicker --save
 ```
 
-
-### via npm 
-
-```
-npm install  angular-datepicker --save
-```
 
 After the install add the js, css and the moment files to your page.
 
@@ -28,7 +22,7 @@ Add the following module to your page : `datePicker`
 
 ## Usage Example
 
-[Live demo](https://rawgithub.com/g00fy-/angular-datepicker/master/app/index.html)
+[Live demo](https://rawgit.com/udpcsdev/angular-datepicker/master/app/index.html)
 
 ## New features
 
@@ -36,8 +30,8 @@ This fork of angular-datepicker contains several features.
 
 ### Timezone Support
 
-* The directive will work with or without a specified timezone. 
-* If the timezone is known, it can be assigned to the datepicker via the `timezone` attribute. 
+* The directive will work with or without a specified timezone.
+* If the timezone is known, it can be assigned to the datepicker via the `timezone` attribute.
 * If no timezone is provided, then the local time will be used.
 
 ##### No timezone information
@@ -62,9 +56,9 @@ This fork of angular-datepicker contains several features.
 
 ### Maximum / minimum dates:
 
-* These attributes restrict the dates that can be selected. 
-* These work differently from the original `min-date` and `max-date` attributes, which they replace. 
-* The original attributes allow selecting any dates and just mark the input as invalid. 
+* These attributes restrict the dates that can be selected.
+* These work differently from the original `min-date` and `max-date` attributes, which they replace.
+* The original attributes allow selecting any dates and just mark the input as invalid.
 * With these attributes, if a date in the picker is outside of the valid range, then it will not be selectable.
 
 ##### Minimum date:
@@ -113,7 +107,7 @@ This fork of angular-datepicker contains several features.
   * `minView`: Minimum zoom level for date/time selection. Disabled if this value is falsy.
   * `maxView`: Maximum zoom level for date/time selection. Disabled if this value is falsy.
   * `view`: Default zoom level for date/time selection. Set to default value if this value is falsy.
-  * `format`: Format string used to display dates on the input field. Set to default value if this value is falsy. 
+  * `format`: Format string used to display dates on the input field. Set to default value if this value is falsy.
     * See: [format options](http://momentjs.com/docs/#/displaying/format/)
 	* This option cannot be used on the `date-picker` directive directly, it must be used on a `date-time` input field.
 * The possible for the `view`, `minView` and `maxView` fields are:
